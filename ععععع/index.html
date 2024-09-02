@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CX Games - موقع تنزيل الألعاب</title>
+    <!-- إضافة Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- إضافة Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- إضافة Animate.css لتحريك العناصر -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- إضافة AOS.js لتحريك العناصر عند التمرير -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <!-- إضافة خط Noto Kufi Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        header,
+        footer {
+            background-color: #212121;
+        }
+
+        .game-card {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            flex-grow: 1;
+        }
+
+        .game-card h3 {
+            padding: 10px;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            font-weight: bold;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        .search-bar {
+            background-color: #333333;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            color: #ffffff;
+            outline: none;
+            padding: 5px;
+            flex: 1;
+        }
+
+        .search-bar button {
+            background-color: #ffeb3b;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons button {
+            background-color: #ffeb3b;
+            border: none;
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #ffc107;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .col-md-4 {
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-4 {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .col-md-4 {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* تنسيق شريط التنقل المرقم */
+        .pagination {
+            justify-content: center;
+        }
+
+        .pagination .page-item {
+            display: none;
+        }
+
+        .pagination .page-item.previous,
+        .pagination .page-item.next {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: #ffffff;
+            background-color: #333333;
+            border: 1px solid #ffffff;
+            padding: 5px 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #ffeb3b;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="p-4 d-flex justify-content-between align-items-center">
+        <h1 class="text-3xl font-bold">CX Games</h1>
+        <nav>
+            <ul class="d-flex list-unstyled mb-0">
+                <li><a href="index.html" class="mr-4 hover:text-yellow-500">الرئيسية</a></li>
+                <li><a href="#" class="mr-4 hover:text-yellow-500">الدعم</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="search-bar d-flex justify-content-center my-4">
+        <input type="text" id="search" placeholder="ابحث عن لعبة...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <main class="p-8">
+        <section class="mb-8">
+            <div class="filter-buttons">
+                <button data-filter="all">جميع الألعاب</button>
+                <button data-filter="action">أكشن</button>
+                <button data-filter="adventure">مغامرات</button>
+                <button data-filter="sports">رياضة</button>
+            </div>
+
+            <div class="row" data-aos="fade-up">
+                <!-- الألعاب الموجودة -->
+                <div class="col-md-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/51/c1/1c/51c11cf0152d25adae2b70758af6bfdb.jpg" alt="FIFA23">
+                        <h3>FIFA23</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/92/ac/b0/92acb0f11eb26329b6c752d6bff473ae.jpg" alt="FarCry 3">
+                        <h3>FarCry 3</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/66/e7/aa/66e7aafacf455a01e759248639437268.jpg" alt="FIFA19">
+                        <h3>FIFA19</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/1c/62/ea/1c62ea9749df066d2be365a5c495063f.jpg" alt="GTA Vice City">
+                        <h3>GTA Vice City</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/e4/e1/37/e4e1373784b18162036aaa6baba00471.jpg" alt="Mafia 2">
+                        <h3>Mafia 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/236x/92/c8/70/92c8704089d45b7b53663c6b3b2ddcbf.jpg" alt="Tomb Raider 2013">
+                        <h3>Tomb Raider 2013</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/2d/d7/bb/2dd7bb0533e2b9c363160a38d9527039.jpg" alt="Resident Evil 4">
+                        <h3>Resident Evil 4</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/8c/22/31/8c2231794d8c63cf2dbfc1583ee2a730.jpg" alt="Grand Theft Auto IV">
+                        <h3>Grand Theft Auto IV</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/c8/6c/65/c86c65163bf7581b9c2866d906634ef9.jpg" alt="Grand Theft Auto: San Andreas">
+                        <h3>Grand Theft Auto: San Andreas</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/f8/f0/3f/f8f03fbdb62fb065c5e89f576f0ff9cd.jpg" alt="Far Cry 4">
+                        <h3>Far Cry 4</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/08/3a/ac/083aac6569fe6177f73f8a02ba3f3ad2.jpg" alt="Marvel's Spider-Man">
+                        <h3>Marvel's Spider-Man</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/2e/12/11/2e12114bcc1dfb1cfa5ac7880b9d2de0.jpg" alt="Assassin's Creed IV: Black Flag">
+                        <h3>Assassin's Creed IV: Black Flag</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/54/81/e8/5481e86652e090934280efc143846127.jpg" alt="Bully">
+                        <h3>Bully</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/736x/5e/6a/cf/5e6acf9e03b48f5ed16ac41ed129de53.jpg" alt="Grand Theft Auto V">
+                        <h3>Grand Theft Auto V</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/736x/54/13/02/5413026e109863f7a3fb5bdc1ef2982a.jpg" alt="Minecraft">
+                        <h3>Minecraft</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/cf/48/c1/cf48c18eafab40998f14b051629376b9.jpg" alt="PES 2016">
+                        <h3>PES 2016</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/34/93/77/349377f7920f5242da828d0844cfb672.jpg" alt="Battlefield: Bad Company 2">
+                        <h3>Battlefield: Bad Company 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/6e/7c/85/6e7c8572a7efc3e23de26a79d23aa03e.jpg" alt="Call of Duty: Black Ops">
+                        <h3>Call of Duty: Black Ops</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/46/50/d3/4650d36f344fee91eec4e7875b3649c1.jpg" alt="FIFA 18">
+                        <h3>FIFA 18</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/50/b4/29/50b429fd62997a5a7a0195492f439563.jpg" alt="FIFA 15">
+                        <h3>FIFA 15</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/2c/4b/f1/2c4bf1b641c57e84b40df079ec16984c.jpg" alt="Stardew Valley">
+                        <h3>Stardew Valley</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/5b/bf/7c/5bbf7c5d7c5044b0e4f7ec4eb19391fb.jpg" alt="The Sims 3">
+                        <h3>The Sims 3</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/e4/40/1a/e4401aa11e42e6427a03dc74974ee9fe.jpg" alt="Battlefield 4">
+                        <h3>Battlefield 4</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/f9/1e/30/f91e3082fa22331b62868a6139573379.jpg" alt="Terraria">
+                        <h3>Terraria</h3>
+                    </div>
+                </div>
+                <!-- الألعاب الجديدة من الصفحة الثانية -->
+                <div class="col-md-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/af/ca/12/afca124bf35229da8841d24ab2ca8c0f.jpg" alt="The Last of Us">
+                        <h3>The Last of Us</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/83/1b/b3/831bb31723f6b2193060a6b525bce447.jpg" alt="Cyberpunk 2077">
+                        <h3>Cyberpunk 2077</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/41/1f/e6/411fe62c20e64ed43a8530d6b61c5c30.jpg" alt="NBA 2K21">
+                        <h3>NBA 2K21</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/86/a5/cc/86a5ccad082028c2c568ff2db5d213cc.jpg" alt="Horizon Zero Dawn">
+                        <h3>Horizon Zero Dawn</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/d2/a4/5c/d2a45cc2083abc8bf1c21e47e0b29c3a.jpg" alt="Red Dead Redemption 2">
+                        <h3>Red Dead Redemption 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/ed/c0/7f/edc07f0993fbf3c50cec24147ec10ec8.jpg" alt="Uncharted 4">
+                        <h3>Uncharted 4</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/34/51/ea/3451ea35450cc2ae9f6d0711eb1e1766.jpg" alt="Call of Duty: Modern Warfare 2">
+                        <h3>Call of Duty: Modern Warfare 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/65/d2/c8/65d2c889ff2e1d00ad889d66c5263f23.jpg" alt="Assassin's Creed Odyssey">
+                        <h3>Assassin's Creed Odyssey</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/24/73/05/247305ab8d34bc58cece9964c5d48b42.jpg" alt="FIFA 21">
+                        <h3>FIFA 21</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/e8/db/1d/e8db1d01cfa8c52561c2631f48321cc7.jpg" alt="Elden Ring">
+                        <h3>Elden Ring</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/fb/a8/76/fba87606eda4b6f55d7f28a27f7e3b3d.jpg" alt="Hogwarts Legacy">
+                        <h3>Hogwarts Legacy</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/93/63/9b/93639ba290915e24619d7b11c0541ea6.jpg" alt="Starfield">
+                        <h3>Starfield</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="strategy">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/d2/e8/f2/d2e8f2a712d506221615186b9ccefeea.jpg" alt="Stronghold Crusader">
+                        <h3>Stronghold Crusader</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/c6/21/5d/c6215dbee3ea8a4ac84f1752e56c0153.jpg" alt="Dark Souls Remastered">
+                        <h3>Dark Souls Remastered</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- شريط التنقل المرقم (تم نقله هنا) -->
+    <footer class="p-4 text-center">
+        <nav aria-label="صفحات الألعاب">
+            <ul class="pagination">
+                <li class="page-item previous"><a class="page-link" href="page2.html">التالي</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- إضافة jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- إضافة Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- إضافة AOS.js لتحريك العناصر عند التمرير -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // فلترة الألعاب حسب النوع
+        $(document).ready(function () {
+            $('.filter-buttons button').on('click', function () {
+                var filterValue = $(this).attr('data-filter');
+                if (filterValue === 'all') {
+                    $('.game-card-container').show();
+                } else {
+                    $('.game-card-container').hide();
+                    $('.game-card-container[data-category="' + filterValue + '"]').show();
+                }
+            });
+
+            // تحسين شريط البحث
+            $('#search').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('.game-card-container').each(function () {
+                    var gameTitle = $(this).find('h3').text().toLowerCase();
+                    if (gameTitle.indexOf(searchQuery) !== -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

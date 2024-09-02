@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CX Games - موقع تنزيل الألعاب - الصفحة 2</title>
+    <!-- إضافة Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- إضافة Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- إضافة Animate.css لتحريك العناصر -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- إضافة AOS.js لتحريك العناصر عند التمرير -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <!-- إضافة خط Noto Kufi Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        header,
+        footer {
+            background-color: #212121;
+        }
+
+        .game-card {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            flex-grow: 1;
+        }
+
+        .game-card h3 {
+            padding: 10px;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            font-weight: bold;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons button {
+            background-color: #ffeb3b;
+            border: none;
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #ffc107;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .col-md-4 {
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-4 {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .col-md-4 {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* تنسيق شريط التنقل المرقم */
+        .pagination {
+            justify-content: center;
+        }
+
+        .pagination a {
+            color: #ffffff;
+            background-color: #333333;
+            border: 1px solid #ffffff;
+            padding: 5px 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #ffeb3b;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="p-4 d-flex justify-content-between align-items-center">
+        <h1 class="text-3xl font-bold">CX Games</h1>
+        <nav>
+            <ul class="d-flex list-unstyled mb-0">
+                <li><a href="index.html" class="mr-4 hover:text-yellow-500">الرئيسية</a></li>
+                <li><a href="#" class="mr-4 hover:text-yellow-500">الدعم</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="p-8">
+        <section class="mb-8">
+            <div class="filter-buttons">
+                <button data-filter="all">جميع الألعاب</button>
+                <button data-filter="action">أكشن</button>
+                <button data-filter="adventure">مغامرات</button>
+                <button data-filter="sports">رياضة</button>
+            </div>
+
+            <div class="row" data-aos="fade-up">
+                <!-- الألعاب الجديدة -->
+                <div class="col-md-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/af/ca/12/afca124bf35229da8841d24ab2ca8c0f.jpg" alt="The Last of Us">
+                        <h3>The Last of Us</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/83/1b/b3/831bb31723f6b2193060a6b525bce447.jpg" alt="Cyberpunk 2077">
+                        <h3>Cyberpunk 2077</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/41/1f/e6/411fe62c20e64ed43a8530d6b61c5c30.jpg" alt="NBA 2K21">
+                        <h3>NBA 2K21</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/86/a5/cc/86a5ccad082028c2c568ff2db5d213cc.jpg" alt="Horizon Zero Dawn">
+                        <h3>Horizon Zero Dawn</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/d2/a4/5c/d2a45cc2083abc8bf1c21e47e0b29c3a.jpg" alt="Red Dead Redemption 2">
+                        <h3>Red Dead Redemption 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/ed/c0/7f/edc07f0993fbf3c50cec24147ec10ec8.jpg" alt="Uncharted 4">
+                        <h3>Uncharted 4</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/34/51/ea/3451ea35450cc2ae9f6d0711eb1e1766.jpg" alt="Call of Duty: Modern Warfare 2">
+                        <h3>Call of Duty: Modern Warfare 2</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/65/d2/c8/65d2c889ff2e1d00ad889d66c5263f23.jpg" alt="Assassin's Creed Odyssey">
+                        <h3>Assassin's Creed Odyssey</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="sports">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/24/73/05/247305ab8d34bc58cece9964c5d48b42.jpg" alt="FIFA 21">
+                        <h3>FIFA 21</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/e8/db/1d/e8db1d01cfa8c52561c2631f48321cc7.jpg" alt="Elden Ring">
+                        <h3>Elden Ring</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/fb/a8/76/fba87606eda4b6f55d7f28a27f7e3b3d.jpg" alt="Hogwarts Legacy">
+                        <h3>Hogwarts Legacy</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="adventure">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/93/63/9b/93639ba290915e24619d7b11c0541ea6.jpg" alt="Starfield">
+                        <h3>Starfield</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="strategy">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/d2/e8/f2/d2e8f2a712d506221615186b9ccefeea.jpg" alt="Stronghold Crusader">
+                        <h3>Stronghold Crusader</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 game-card-container" data-category="action">
+                    <div class="game-card">
+                        <img src="https://i.pinimg.com/564x/c6/21/5d/c6215dbee3ea8a4ac84f1752e56c0153.jpg" alt="Dark Souls Remastered">
+                        <h3>Dark Souls Remastered</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination mt-4">
+                <a href="index.html">« السابق</a>
+                <a href="page3.html">التالي »</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="p-4 text-center">
+        <p>© 2024 CX Games - جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- إضافة jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- إضافة Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <!-- إضافة Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- إضافة AOS.js لتحريك العناصر عند التمرير -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-buttons button');
+            const gameCards = document.querySelectorAll('.game-card-container');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const filter = this.getAttribute('data-filter');
+                    gameCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
